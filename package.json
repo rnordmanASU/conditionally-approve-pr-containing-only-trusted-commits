@@ -2,7 +2,7 @@
   "name": "conditionally-approve-pr-containing-only-trusted-commits",
   "version": "1.0.0",
   "description": "Automatically approve pull requests if they only contain commits that exist in a trusted branch",
-  "main": "index.js",
+  "main": "src/index.js",
   "repository": "git@github.com:rnordmanASU/conditionally-approve-pr-containing-only-trusted-commits.git",
   "author": "Robert Nordman <rnordman@asu.edu>",
   "license": "MIT",
@@ -10,5 +10,12 @@
   "dependencies": {
     "@actions/core": "^1.10.0",
     "@actions/github": "^5.1.1"
+  },
+  "devDependencies": {
+    "jest-cli": "15.1.1"
+  },
+  "scripts": {
+    "execute": "node src/index.js",
+    "test": "jest"
   }
 }
