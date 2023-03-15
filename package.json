@@ -1,0 +1,10 @@
+{
+  "name": "conditionally-approve-pr-containing-only-trusted-commits",
+  "version": "1.0.0",
+  "description": "Automatically approve pull requests if they only contain commits that exist in a trusted branch",
+  "main": "index.js",
+  "repository": "git@github.com:rnordmanASU/conditionally-approve-pr-containing-only-trusted-commits.git",
+  "author": "Robert Nordman <rnordman@asu.edu>",
+  "license": "MIT",
+  "private": false
+}
