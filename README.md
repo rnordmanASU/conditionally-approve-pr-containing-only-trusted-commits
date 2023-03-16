@@ -1,5 +1,11 @@
 # conditionally-approve-pr-containing-only-trusted-commits
 
+- [Context and motivation](#context-and-motivation)
+- [Usage](#usage)
+- [Example](#example)
+- [Dependencies](#dependencies)
+- [License](#license)
+
 ## Context and motivation
 
 This is a Github action designed to automatically approve a pull request (PR)
@@ -70,3 +76,6 @@ Beyond these other actions, it uses git and bash in order to check for ancestry.
 |---|---|
 | [hmarr/auto-approve-action](https://github.com/hmarr/auto-approve-action) | Used to automatically approve the PR |
 | [actions/checkout](https://github.com/actions/checkout) | Checkouts the repo |
+
+# License
+[GNU GPLv3 License](LICENSE) covers the scripts and documentation in this project.
