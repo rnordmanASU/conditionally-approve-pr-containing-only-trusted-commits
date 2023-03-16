@@ -1,9 +1,9 @@
 name: Autoapprove PRs that contain only commits that exist in a trusted branch.
 
 inputs:
-    trusted-branch:
+    trusted-branches:
         description: A list of trusted branches
-        default: main
+        default: ['main']
         required: true
 
 runs:
@@ -15,10 +15,14 @@ runs:
               fetch-depth: 0
         - name: Check if only contains commits in a trusted branch.
           run: |
+              echo ${{ inputs.trusted-branch }}
+              for i in ${{ inputs.trusted-branch }}; do
+                  echo "$i"
+              done
               if git merge-base --is-ancestor origin/${{ github.head_ref }} origin/${{ inputs.trusted-branch }}; then
-                  echo -e "\033[32m${{ github.head_ref }} only contains commits found in QA"
+                  echo -e "\033[32m${{ github.head_ref }} only contains commits found in ${{ inputs.trusted-branch }}"
               else
-                  echo -e "\033[31m${{ github.head_ref }} contains commits not found in QA"
+                  echo -e "\033[31m${{ github.head_ref }} contains commits not found in ${{ inputs.trusted-branch }}"
                   exit 1;
               fi
           shell: bash
