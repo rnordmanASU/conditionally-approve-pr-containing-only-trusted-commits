@@ -41,7 +41,7 @@ qa       -----------------+----------->
 
 ## Usage
 ```
-- uses: rnordmanASU/conditionally-approve-pr-containing-only-trusted-commits@main
+- uses: rnordmanASU/conditionally-approve-pr-containing-only-trusted-commits@v1
   with:
     # A semicolon separated list of trusted branches (trims whitespace from each branch name)
     # Default: 'master; main'
@@ -65,7 +65,7 @@ jobs:
         permissions:
             pull-requests: write
         steps:  
-            - uses: rnordmanASU/conditionally-approve-pr-containing-only-trusted-commits@main
+            - uses: rnordmanASU/conditionally-approve-pr-containing-only-trusted-commits@v1
               with:
                 trusted-branches: 'uat;qa'
 ```
