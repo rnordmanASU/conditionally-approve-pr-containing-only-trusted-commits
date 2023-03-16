@@ -15,7 +15,7 @@ runs:
               fetch-depth: 0
         - name: Check if only contains commits in a trusted branch.
           run: |
-              IFS=';' read -r -a branches <<< "${{ trusted-branches }}"
+              IFS=';' read -r -a branches <<< "${{ inputs.trusted-branches }}"
               for b in "${branches[@]}"; do
                   b=$(echo $b | xargs) # trims whitespace
                   if git merge-base --is-ancestor origin/${{ github.head_ref }} origin/$b; then
