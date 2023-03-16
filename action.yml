@@ -3,7 +3,7 @@ name: Autoapprove PRs that contain only commits that exist in a trusted branch.
 inputs:
     trusted-branches:
         description: A list of trusted branches
-        default: ['main']
+        default: 'master;main'
         required: true
 
 runs:
@@ -15,15 +15,14 @@ runs:
               fetch-depth: 0
         - name: Check if only contains commits in a trusted branch.
           run: |
-              echo ${{ inputs.trusted-branch }}
-              for i in ${{ inputs.trusted-branch }}; do
-                  echo "$i"
+              IFS=';' read -r -a branches <<< "${{ trusted-branches }}"
+              for b in "${branches[@]}"; do
+                  if git merge-base --is-ancestor origin/${{ github.head_ref }} origin/$b; then
+                      echo -e "\033[32m${{ github.head_ref }} only contains commits found in $b"
+                      exit 0;
+                  fi
               done
-              if git merge-base --is-ancestor origin/${{ github.head_ref }} origin/${{ inputs.trusted-branch }}; then
-                  echo -e "\033[32m${{ github.head_ref }} only contains commits found in ${{ inputs.trusted-branch }}"
-              else
-                  echo -e "\033[31m${{ github.head_ref }} contains commits not found in ${{ inputs.trusted-branch }}"
-                  exit 1;
-              fi
+              echo -e "\033[31m${{ github.head_ref }} contains commits not found in any trusted branch (${{ inputs.trusted-branches }})"
+              exit 1;
           shell: bash
         - uses: hmarr/auto-approve-action@v3
