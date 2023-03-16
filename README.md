@@ -28,6 +28,7 @@ This is useful for workflows that look something like:
 7. This Github action automatically approves the PR since the head is an ancestor to QA.
 8. Merge into main branch.
 
+```
 main     ---------+---------------+--->
                   |               ^
                   V               |
@@ -35,6 +36,7 @@ feature           +-c-c-c-+-------+
                           |
                           V
 qa       -----------------+----------->
+```
 (c indicated a commit - after pulling into qa, there are no more commits on the feature branch)
 
 ## Usage
