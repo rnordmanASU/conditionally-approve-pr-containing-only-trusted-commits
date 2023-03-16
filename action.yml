@@ -3,7 +3,7 @@ name: Autoapprove PRs that contain only commits that exist in a trusted branch.
 inputs:
     trusted-branches:
         description: A list of trusted branches
-        default: 'master;main'
+        default: 'master; main'
         required: true
 
 runs:
@@ -17,6 +17,7 @@ runs:
           run: |
               IFS=';' read -r -a branches <<< "${{ trusted-branches }}"
               for b in "${branches[@]}"; do
+                  b=$(echo $b | xargs) # trims whitespace
                   if git merge-base --is-ancestor origin/${{ github.head_ref }} origin/$b; then
                       echo -e "\033[32m${{ github.head_ref }} only contains commits found in $b"
                       exit 0;
