@@ -80,4 +80,4 @@ Beyond these other actions, it uses git and bash in order to check for ancestry.
 | [actions/checkout](https://github.com/actions/checkout) | Checkouts the repo |
 
 # License
-[GNU GPLv3 License](LICENSE) covers the scripts and documentation in this project.
+[MIT License](LICENSE) covers the scripts and documentation in this project.
