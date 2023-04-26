@@ -63,6 +63,7 @@ jobs:
         name: Approve PRs if they only contain commits in QA or UAT
         runs-on: ubuntu-latest
         permissions:
+            contents: read
             pull-requests: write
         steps:  
             - uses: rnordmanASU/conditionally-approve-pr-containing-only-trusted-commits@main
